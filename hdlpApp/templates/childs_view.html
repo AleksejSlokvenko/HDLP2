@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
+    
+    <link rel="stylesheet" href="{% static "/css/style.css" %}"> 
+    
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>HDLP</title>
+
+</head>
+<body>
+    <div id="content">
+      
+      <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+
+        <!-- <header>Header</header> -->
+        <nav role="navigation">
+
+          <div class="content">
+            <div>
+              <h2>Welcome <span class="welcome">Mr.Sunshine!</span></h2>
+            </div>
+            
+            <div class="links">
+              <a href="/">Parent View</a>
+              <a href="">Language</a>
+              <a href="">Settings</a>
+              <a href="">Log Out</a>
+            </div>
+            <i class="material-icons menu" onclick="menu()">menu</i>
+          </div>
+
+          <div class="dropdown">
+            <a href="">Parent View</a>
+            <a href="">Language</a>
+            <a href="">Settings</a>
+            <a href="">Log Out</a>
+          </div>
+
+        </nav>
+
+
+        <main id="menu">
+
+        <ul>
+
+          <li><a href="#SelfCare">Self Care</a>
+
+            <ul>
+              <li><a href="#">Personal Hygiene</a>
+                <ul>
+                  <li><a href="#">Washing Face</a></li>
+                  <li><a href="/washing_hands">Washing Hands</a></li>
+                  <li><a href="#">Washing Feet</a></li>
+                  <li><a href="#">Cutting Nails</a></li>
+                  <li><a href="#">Brushing Hair</a></li>
+                  <li><a href="#">Brushing Teeth</a></li>
+                </ul>
+              </li>
+
+              <li><a href="#">Healthy Diet</a></li>
+               
+              <li><a href="#">Healthy Habits</a></li>
+            </ul>
+
+          </li>
+
+
+          
+        </ul>
+      </main>
+
+      <main id="menu">
+
+        <ul>
+
+          
+
+
+          <li><a href="#EnvironmentalCare">Environmental Care</a>
+
+            
+
+            <ul>
+
+              <li><a href="#">Home Care</a>
+
+                <ul>
+
+                  <li><a href="#">Bedroom</a>
+                    <ul>
+                      <li><a href="/making_bed">Making Bed</a></li>
+                      <li><a href="#">Changing Bedding</a></li>
+                      <li><a href="#">Orginizing Clothes</a></li>
+                      <li><a href="#">Orginizing Toys</a></li>
+                    </ul>
+                  </li>
+
+                  <li><a href="#">Kitchen</a>
+                    <ul>
+                      <li><a href="#">Washing Dishes</a></li>
+                      <li><a href="#">Sweeping Floor</a></li>
+                      <li><a href="#">Washing Floor</a></li>
+                      <li><a href="#">Cleaning Table</a></li>
+                    </ul>
+                  </li>
+
+                  <!-- <li><a href="#">Restroom</a></li> -->
+
+                  <li><a href="#">Livingroom</a>
+                    <ul>
+                      <li><a href="#">Wiping Dust</a></li>
+                      <li><a href="#">Wacuum Carpet</a></li>
+                      <li><a href="#">Washing Floor</a></li>
+                      <li><a href="#">Cleaning Table</a></li>
+                    </ul>
+                  </li>
+
+                  <li><a href="#">Closet</a>
+                    <ul>
+                      <li><a href="#">Folding Clothes</a></li>
+                      <li><a href="#">Sorting Laundry</a></li>
+                      <li><a href="#">Organizing</a></li>
+                      <li><a href="#">Cleaning Closet</a></li>
+                    </ul>
+                  </li>
+
+                </ul>
+                
+              </li>
+
+              <li><a href="#">Helping Others</a>
+
+                <ul>
+
+                  <li><a href="#">Helping Parents</a>
+                    <ul>
+                      <li><a href="#">Offer Help</a></li>
+                      
+                    </ul>
+                  </li>
+
+                  <li><a href="#">Helping Friends</a>
+                    <ul>
+                      <li><a href="#">Move Things</a></li>
+                      <li><a href="#">To do Assignment</a></li>
+                    </ul>
+                  </li>
+
+                  <li><a href="#">Helping Grandparents</a>
+                    <ul>
+                      <li><a href="#">Offer Help</a></li>
+                      <li><a href="#"></a></li>
+                    </ul>
+                  </li>
+
+                  <li><a href="#">Helping Teachers</a>
+                    <ul>
+                      <li><a href="#">Offer Help</a></li>
+                      <li><a href="#"></a></li>
+                    </ul>
+                  </li>
+                  
+                </ul>
+
+              </li>
+
+              
+
+              <li><a href="#">Garden Care</a></li>
+              <li><a href="#">Animal Care</a></li>
+            </ul>
+
+          </li>
+
+          
+        </ul>
+      </main>
+
+      <main id="menu">
+
+        <ul>
+
+          
+          <li><a href="#PhysicalDevelopment">Physical Development</a>
+            <ul>
+              <li><a href="#">Motor Skills</a>
+
+                <ul>
+                  <li><a href="#">Fine motor skills</a>
+                    <ul>
+                      <li><a href="/fine_gross_motor_skills">Exercise 1</a></li>
+                      <li><a href="#">Exercise 2</a></li>
+                      <li><a href="#">Exercise 3</a></li>
+                    </ul>
+                  </li>
+
+                  <li><a href="#">Gross Motor Skills</a>
+                    <ul>
+                      <li><a href="#">Exercise 1</a></li>
+                      <li><a href="#">Exercise 2</a></li>
+                      <li><a href="#">Exercise 3</a></li>
+                    </ul>
+                  </li>
+                  
+                  
+                </ul>
+              </li>
+
+              <li><a href="#">Brain&Brain Coordination</a></li>
+               
+            </ul>
+          
+          </li>
+          
+        </ul>
+      </main>
+
+      <main id="menu">
+
+        <ul>
+
+             
+          <li><a href="#PersonalityDevelopment">Personality Development</a>
+            <ul>
+              <li><a href="#">Communication</a>
+
+                <ul>
+                  <li><a href="#">Interacting with Child</a>
+                    <ul>
+                      <li><a href="/making_friend">Making Friend</a></li>
+                      <li><a href="#">Asking for Help</a></li>
+                      <li><a href="#">Apologising</a></li>
+                    </ul>
+                  </li>
+
+                  <li><a href="#">Interacting with Adults</a>
+                    <ul>
+                      <li><a href="#">Seeking Atteniton</a></li>
+                      <li><a href="#">Asking for Help</a></li>
+                      <li><a href="#">Asking for Permission</a></li>
+                    </ul>
+                  </li>
+                  
+                  
+                </ul>
+              </li>
+
+              <li><a href="#">Self-Analysis</a></li>
+               
+              <li><a href="#">Self-Development</a></li>
+            </ul>
+          
+          </li>
+          
+        </ul>
+
+      </main>
+
+      <main id="menu">
+
+        <ul>  
+         
+
+             
+              <li><a href="#IntellectualDevelopment">Intellectual Development</a>
+                <ul>
+                  <li><a href="#">Math</a>
+    
+                    <ul>
+                      <li><a href="#">Addition</a>
+                        <ul>
+                          <li><a href="https://www.arcademics.com/games/jet-ski" target="blank">JetSki Addition</a></li>
+                          
+                          
+                        </ul>
+                      </li>
+                      <li><a href="#">Substructions</a></li>
+                      <li><a href="#">Division</a></li>
+                      
+                      <li><a href="#">Multiplication</a></li>
+                      <li><a href="#">Fractions</a></li>
+                      
+                    </ul>
+                  </li>
+    
+                  <li><a href="#">Reading</a></li>
+                   
+                  <li><a href="#">Science</a></li>
+                </ul>
+              
+              </li>
+              
+            </ul>
+          
+         
+        
+      </main>
+
+      <section id="SelfCare">
+        <h1>Self Care</h1>
+        <div>
+
+        
+          <div class="cards">
+            <div class="card">
+              <a href="/washing_hands"><img class="card__image" src= "{% static "/img/website_images.jpg" alt="Washing Hands" %}"></a>
+              
+              <!-- <div class="card__content">
+                <p>
+                  
+                </p>
+                <p>
+                  
+                </p>
+              </div> -->
+              <div class="card__info">
+                <div>
+                  <i class="material-icons">thumb_up</i>310
+                </div>
+                <div>
+                  <a href="/washing_hands" class="card__link">Washing Hands</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <img class="card__image" src= "{% static "img/brushing_teeth.jpg" alt="Brushing Teeth" %}">
+              <!-- <div class="card__content">
+                <p>
+                  Brushing Teeth
+                </p>
+                <p>
+                  
+                </p>
+              </div> -->
+              <div class="card__info">
+                <div>
+                  <i class="material-icons">thumb_up</i>1,993
+                </div>
+                <div>
+                  <a href="./" class="card__link">Brushing Teeth</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <img class="card__image" src="{% static "img/washing_face.jpg" alt="Washing Face" %}">
+              <!-- <div class="card__content">
+                <p>
+                  Washing Face
+                </p>
+                <p>
+                  
+                </p>
+              </div> -->
+              <div class="card__info">
+                <div>
+                  <i class="material-icons">thumb_up</i>887
+                </div>
+                <div>
+                  <a href="./" class="card__link">Washing Face</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <img class="card__image" src="{% static "img/brushing_hair.jpg" alt="Brushing Hair"  %}">
+              <!-- <div class="card__content">
+                <p>
+                  Brushing Hair
+                </p>
+                <p>
+                  
+                </p>
+              </div> -->
+              <div class="card__info">
+                <div>
+                  <i class="material-icons">thumb_up</i>2,512
+                </div>
+                <div>
+                  <a href="./" class="card__link">Brushing Hair</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <img class="card__image" src="{% static "img/cutting_nails.jpg" alt=""  %}"x>
+              <!-- <div class="card__content">
+                <p>
+                  Cutting Nails
+                </p>
+                <p>
+                  
+                </p>
+              </div> -->
+              <div class="card__info">
+                <div>
+                  <i class="material-icons">thumb_up</i>140
+                </div>
+                <div>
+                  <a href="./" class="card__link">Cutting Nails</a>
+                </div>
+              </div>
+            </div>
+            
+          </div>
+          
+          
+      </section>
+
+      <section2 id="EnvironmentalCare">
+        <h1>Environmental Care</h1>
+          <div class="cards">
+
+            
+
+            <div class="card">
+              <img class="card__image" src="{% static "img/helping_others.jpg" alt="Helping Others"  %}">
+              <!-- <div class="card__content">
+                <p>
+                  
+                </p>
+                <p>
+                  
+                </p>
+              </div> -->
+              <div class="card__info">
+                <div>
+                  <i class="material-icons">thumb_up</i>310
+                </div>
+                <div>
+                  <a href="./" class="card__link">Offering Help</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <img class="card__image" src="{% static "img/helping_siblings.jpg" alt="Helping Siblings"  %}">
+              <!-- <div class="card__content">
+                <p>
+                  Brushing Teeth
+                </p>
+                <p>
+                  
+                </p>
+              </div> -->
+              <div class="card__info">
+                <div>
+                  <i class="material-icons">thumb_up</i>1,993
+                </div>
+                <div>
+                  <a href="./" class="card__link">Helping Siblings</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <img class="card__image" src={% static "img/helping_homework.jpg" alt="Helping with Homework"  %}>
+              <!-- <div class="card__content">
+                <p>
+                  Washing Face
+                </p>
+                <p>
+                  
+                </p>
+              </div> -->
+              <div class="card__info">
+                <div>
+                  <i class="material-icons">thumb_up</i>887
+                </div>
+                <div>
+                  <a href="./" class="card__link">Helping Homework</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <img class="card__image" src="{% static "img/helping_grandparents.jpg" alt="Helping Grandparents"  %}">
+              <!-- <div class="card__content">
+                <p>
+                  Brushing Hair
+                </p>
+                <p>
+                  
+                </p>
+              </div> -->
+              <div class="card__info">
+                <div>
+                  <i class="material-icons">thumb_up</i>2,512
+                </div>
+                <div>
+                  <a href="./" class="card__link">Helping Grandparents</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <img class="card__image" src="{% static "img/helping_community.jpg" alt="Helping Community"  %}">
+              <!-- <div class="card__content">
+                <p>
+                  Cutting Nails
+                </p>
+                <p>
+                  
+                </p>
+              </div> -->
+              <div class="card__info">
+                <div>
+                  <i class="material-icons">thumb_up</i>140
+                </div>
+                <div>
+                  <a href="./" class="card__link">Helping Community</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <img class="card__image" src="{% static "img/planting_tress.jpg" alt=""  %}">
+              <!-- <div class="card__content">
+                <p>
+                  Cutting Nails
+                </p>
+                <p>
+                  
+                </p>
+              </div> -->
+              <div class="card__info">
+                <div>
+                  <i class="material-icons">thumb_up</i>140
+                </div>
+                <div>
+                  <a href="./" class="card__link">Planting Trees</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <a href="/making_bed"><img class="card__image" src="{% static "img/Making_my_bed_Moment_Pillow.jpg" alt=""  %}"></a>
+              
+              <!-- <div class="card__content">
+                <p>
+                  Brushing Teeth
+                </p>
+                <p>
+                  
+                </p>
+              </div> -->
+              <div class="card__info">
+                <div>
+                  <i class="material-icons">thumb_up</i>1,993
+                </div>
+                <div>
+                  <a href="/making_bed" class="card__link">Making Bed</a>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+          
+          
+      </section2>
+
+
+      <section3 id="PhysicalDevelopment">
+
+      <h1>Physical Development</h1>
+        <div>
+
+        
+          <div class="cards">
+            <div class="card">
+              <a href="/fine_gross_motor_skills"><img class="card__image" src= "{% static "/img/fine_motor_skills.jpg" alt="making_a_friend" %}"></a>
+              
+              <!-- <div class="card__content">
+                <p>
+                  
+                </p>
+                <p>
+                  
+                </p>
+              </div> -->
+              <div class="card__info">
+                <div>
+                  <i class="material-icons">thumb_up</i>310
+                </div>
+                <div>
+                  <a href="/fine_gross_motor_skills" target=_blank" class="card__link">Fine Motor Skills Ex.1</a>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>  
+      </section3>
+
+      <section4 id="PersonalityDevelopment">
+
+        <h1>Personality Development</h1>
+        <div>
+
+        
+          <div class="cards">
+            <div class="card">
+              <a href="/making_friend"><img class="card__image" src= "{% static "/img/making_a_friend_Moment_HighFive.jpg" alt="Making Friends" %}"></a>
+              
+              <!-- <div class="card__content">
+                <p>
+                  
+                </p>
+                <p>
+                  
+                </p>
+              </div> -->
+              <div class="card__info">
+                <div>
+                  <i class="material-icons">thumb_up</i>310
+                </div>
+                <div>
+                  <a href="/making_friend" class="card__link">Making Friends</a>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>  
+          
+      </section4>
+
+<section5 id="IntellectualDevelopment">
+
+  <h1>Intellectual Development</h1>
+        <div>
+
+        
+          <div class="cards">
+            <div class="card">
+              <a href="https://www.arcademics.com/games/jet-ski" target="_blank"><img class="card__image" src= "{% static "img/jetskiAddition.jpg" alt="Making Friends" %}"></a>
+              
+              <!-- <div class="card__content">
+                <p>
+                  
+                </p>
+                <p>
+                  
+                </p>
+              </div> -->
+              <div class="card__info">
+                <div>
+                  <i class="material-icons">thumb_up</i>310
+                </div>
+                <div>
+                  <a href="./" class="card__link">JetSki Addition</a>
+                </div>
+              </div>
+            </div>
+
+            
+          </div>
+        </div>  
+</section5>
+
+      <footer1>
+
+        <div class="copyright">
+            <img class="mb-1" src="/docs/4.4/assets/brand/bootstrap-solid.svg" alt="" width="24" height="24">
+            <small class="d-block mb-3 text-muted">Human Development and Learning Platform &copy;2020</small>
+            </div>
+
+      </footer1>
+        
+      <footer class="footer_content">
+        
+            
+        <div class="footer_links">
+
+          <div class="">
+          <h5>Friends</h5>
+          <ul class="list-unstyled text-small">
+              <li><a class="text-muted" href="https://halcyonhouse.org/incubator" target="_blank">Halcyon Incubator</a></li>
+              <li><a class="text-muted" href="https://edlazarchuk.com/" target="_blank">Ed Lazarchuk</a></li>            </ul>
+          </div>
+
+          <div class="">
+          <h5>Resources</h5>
+          <ul class="list-unstyled text-small">
+              <!-- <li><a class="text-muted" href="#">Resource</a></li> -->
+              <li><a class="text-muted" href="https://www.w3schools.com/" target="_blank">w3scools</a></li>
+              <li><a class="text-muted" href="#">Another resource</a></li>
+              <li><a class="text-muted" href="#">Final resource</a></li>
+          </ul>
+          </div>
+
+          <div class="">
+          <h5>About</h5>
+          <ul class="list-unstyled text-small">
+              <li><a class="text-muted" href="#">Team</a></li>
+              <!-- <li><a class="text-muted" href="#">Locations</a></li> -->
+              <li><a class="text-muted" href="#">Privacy</a></li>
+              <li><a class="text-muted" href="#">Terms</a></li>
+          </ul>
+          </div>
+        
+        </div>
+      </footer>
+    </div>
+
+
+ 
+</body>
+<script type="text/javascript">
+
+var dropdown = document.querySelector("nav .dropdown");
+var button = document.querySelector("nav .menu");
+
+
+function menu() {
+  if (dropdown.style.display === "grid"){
+    dropdown.style.display = "none";
+    button.innerHTML = "menu";
+  } else {
+      dropdown.style.display = "grid";
+      button.innerHTML = "close";
+    }
+}
+
+addEventListener("resize", function() {
+  window.ineerWidth > 700; {
+    dropdown.style.display = "none";
+    button.innerHTML = "menu";
+  }
+})
+
+//Get the button
+var mybutton = document.getElementById("myBtn");
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    mybutton.style.display = "block";
+  } else {
+    mybutton.style.display = "none";
+  }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}
+</script>
+</html>

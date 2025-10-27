@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% load static %}
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="{% static "/css/style.css" %}"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>HDLP</title>
+</head>
+<body>
+    <div id="content">
+      <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+
+        <!-- <header>Header</header> -->
+        <nav role="navigation">
+
+          <div class="content">
+            <div>
+              <h2>Welcome <span class="welcome">Parent!</span></h2>
+            </div>
+            
+            <div class="links">
+              <a href="/childs_view">Child's View</a>
+              <a href="">Language</a>
+              <a href="">Settings</a>
+              <a href="">Log Out</a>
+            </div>
+            <i class="material-icons menu" onclick="menu()">menu</i>
+          </div>
+
+          <div class="dropdown">
+            <a href="">Parent View</a>
+            <a href="">Language</a>
+            <a href="">Settings</a>
+            <a href="">Log Out</a>
+          </div>
+
+        </nav>
+
+
+        <main id="menu">
+
+        <ul>
+
+          <li><a href="#">Planning Baby</a>
+
+            <ul>
+              <li><a href="#">Getting ready</a>
+                <ul>
+                  <li><a href="#">Safe House</a></li>
+                  <li><a href="">Expenses</a></li>
+                </ul>
+              </li>
+
+              <li><a href="#">Healthy Diet</a>
+               
+              <li><a href="#">Healthy Habits</a></li>
+            </ul>
+
+          </li>
+
+
+          
+        </ul>
+      </main>
+
+      <main id="menu">
+
+        <ul>
+
+          
+
+
+          <li><a href="#">Newborn Baby</a>
+
+            <ul>
+                <li><a href="#">Feeding</a></li>
+              <li><a href="#">Stretching</a>
+
+                
+
+              </li>
+
+              <li><a href="#">Communication</a>
+
+                <ul>
+
+                  <li><a href="#">Child's Language</a></li>
+
+                  <li><a href="#">Sign Language</a></li>
+
+                 
+
+                </ul>
+                
+              </li>
+
+              
+              <li><a href="#">Bathing</a></li>
+            </ul>
+
+          </li>
+
+          
+        </ul>
+      </main>
+
+      <main id="menu">
+
+        <ul>
+
+          
+          <li><a href="#">Walking Baby</a></li>
+          
+        </ul>
+      </main>
+
+      <main id="menu">
+
+        <ul>
+
+             
+          <li><a href="#">Talking Child</a></li>
+          
+        </ul>
+
+      </main>
+
+      <main id="menu">
+
+        <ul>
+
+             
+          <li><a href="#">Reading Child</a></li>
+          
+        </ul>
+        
+      </main>
+
+      <section>
+        <h1>Planning Baby</h1>
+        <div>
+
+        
+          <div class="cards">
+            <div class="card">
+              <img class="card__image" src="{% static "img/power_outlet_not_safe.jpg" alt="Safe House"  %}">
+              <!-- <div class="card__content">
+                <p>
+                  
+                </p>
+                <p>
+                  
+                </p>
+              </div> -->
+              <div class="card__info">
+                <div>
+                  <i class="material-icons">thumb_up</i>310
+                </div>
+                <div>
+                  <a href="./" class="card__link">Safe House</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <img class="card__image" src="{%  static "img/baby_gear.jpg" alt="Beb Gear" %}">
+              <!-- <div class="card__content">
+                <p>
+                  Brushing Teeth
+                </p>
+                <p>
+                  
+                </p>
+              </div> -->
+              <div class="card__info">
+                <div>
+                  <i class="material-icons">thumb_up</i>1,993
+                </div>
+                <div>
+                  <a href="./" class="card__link">Expenses</a>
+                </div>
+              </div>
+            </div>
+            
+            <div class="card">
+              <img class="card__image" src="{% static "img/healthy_diet_adult.jpg" alt="Healthy Diet"  %}">
+              <!-- <div class="card__content">
+                <p>
+                  Washing Face
+                </p>
+                <p>
+                  
+                </p>
+              </div> -->
+              <div class="card__info">
+                <div>
+                  <i class="material-icons">thumb_up</i>887
+                </div>
+                <div>
+                  <a href="./" class="card__link">Helthy Diet</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <img class="card__image" src="{% static "img/toga_parent.jpg" alt=""  %}">
+              <!-- <div class="card__content">
+                <p>
+                  Brushing Hair
+                </p>
+                <p>
+                  
+                </p>
+              </div> -->  
+              <div class="card__info">
+                <div>
+                  <i class="material-icons">thumb_up</i>2,512
+                </div>
+                <div>
+                  <a href="./" class="card__link">Stretching</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- <div class="card">
+              <img class="card__image" src="Images/cutting nails.jpg" alt="">
+              <div class="card__content">
+                <p>
+                  Cutting Nails
+                </p>
+                <p>
+                  
+                </p>
+              </div>
+              <div class="card__info">
+                <div>
+                  <i class="material-icons">thumb_up</i>140
+                </div>
+                <div>
+                  <a href="./" class="card__link">Cutting Nails</a>
+                </div>
+              </div>
+            </div> -->
+            
+          </div>
+          
+          
+      </section>
+
+      <section2>
+        <h2>Newborn Baby</h2>
+          <div class="cards">
+            <div class="card">
+              <img class="card__image" src="{% static "img/feeding_baby.jpg" alt="Feeding Baby"  %}">
+              <!-- <div class="card__content">
+                <p>
+                  
+                </p>
+                <p>
+                  
+                </p>
+              </div> -->
+              <div class="card__info">
+                <div>
+                  <i class="material-icons">thumb_up</i>310
+                </div>
+                <div>
+                  <a href="./" class="card__link">Feeding</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <img class="card__image" src="{% static "img/newborn_exercises.jpg" alt="Exersises"  %}">
+              <!-- <div class="card__content">
+                <p>
+                  Brushing Teeth
+                </p>
+                <p>
+                  
+                </p>
+              </div> -->
+              <div class="card__info">
+                <div>
+                  <i class="material-icons">thumb_up</i>1,993
+                </div>
+                <div>
+                  <a href="./" class="card__link">Exercising</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+                <img class="card__image" src="{% static "img/child_language.jpg" alt="Child Language"  %}">
+              <!-- <div class="card__content">
+                <p>
+                  Washing Face
+                </p>
+                <p>
+                  
+                </p>
+              </div> -->
+              <div class="card__info">
+                <div>
+                  <i class="material-icons">thumb_up</i>887
+                </div>
+                <div>
+                  <a href="./" class="card__link">Child Language</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <img class="card__image" src="{% static "img/newboarn_bathing.jpg" alt="Bathing"  %}">
+              <!-- <div class="card__content">
+                <p>
+                  Brushing Hair
+                </p>
+                <p>
+                  
+                </p>
+              </div> -->
+              <div class="card__info">
+                <div>
+                  <i class="material-icons">thumb_up</i>2,512
+                </div>
+                <div>
+                  <a href="./" class="card__link">Bathing</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- <div class="card">
+              <img class="card__image" src="Images/helping community.jpg" alt="">
+              <div class="card__content">
+                <p>
+                  Cutting Nails
+                </p>
+                <p>
+                  
+                </p>
+              </div>
+              <div class="card__info">
+                <div>
+                  <i class="material-icons">thumb_up</i>140
+                </div>
+                <div>
+                  <a href="./" class="card__link">Helping Community</a>
+                </div>
+              </div>
+            </div> -->
+
+            <!-- <div class="card">
+              <img class="card__image" src="Images/planting tress.jpg" alt="">
+              <div class="card__content">
+                <p>
+                  Cutting Nails
+                </p>
+                <p>
+                  
+                </p>
+              </div>
+              <div class="card__info">
+                <div>
+                  <i class="material-icons">thumb_up</i>140
+                </div>
+                <div>
+                  <a href="./" class="card__link">Planting Trees</a>
+                </div>
+              </div>
+            </div> -->
+            
+          </div>
+          
+          
+      </section2>
+
+      <footer1>
+
+        <div class="copyright">
+            <img class="mb-1" src="/docs/4.4/assets/brand/bootstrap-solid.svg" alt="" width="24" height="24">
+            <small class="d-block mb-3 text-muted">Human Development and Learning Platform &copy;2020</small>
+            </div>
+
+      </footer1>
+        
+      <footer class="footer_content">
+        
+            
+        <div class="footer_links">
+
+          <div class="">
+          <h5>Friends</h5>
+          <ul class="list-unstyled text-small">
+              <li><a class="text-muted" href="https://halcyonhouse.org/incubator" target="_blank">Halcyon Incubator</a></li>
+              <li><a class="text-muted" href="https://edlazarchuk.com/" target="_blank">Ed Lazarchuk</a></li>            </ul>
+          </div>
+
+          <div class="">
+          <h5>Resources</h5>
+          <ul class="list-unstyled text-small">
+              <!-- <li><a class="text-muted" href="#">Resource</a></li> -->
+              <li><a class="text-muted" href="https://www.w3schools.com/" target="_blank">w3scools</a></li>
+              <li><a class="text-muted" href="#">Another resource</a></li>
+              <li><a class="text-muted" href="#">Final resource</a></li>
+          </ul>
+          </div>
+
+          <div class="">
+          <h5>About</h5>
+          <ul class="list-unstyled text-small">
+              <li><a class="text-muted" href="#">Team</a></li>
+              <!-- <li><a class="text-muted" href="#">Locations</a></li> -->
+              <li><a class="text-muted" href="#">Privacy</a></li>
+              <li><a class="text-muted" href="#">Terms</a></li>
+          </ul>
+          </div>
+        
+        </div>
+      </footer>
+    </div>
+
+ 
+</body>
+<script type="text/javascript">
+
+  var dropdown = document.querySelector("nav .dropdown");
+  var button = document.querySelector("nav .menu");
+
+  function menu() {
+    if (dropdown.style.display === "grid"){
+      dropdown.style.display = "none";
+      button.innerHTML = "menu";
+    } else {
+        dropdown.style.display = "grid";
+        button.innerHTML = "close";
+      }
+  }
+
+  addEventListener("resize", function() {
+    window.ineerWidth > 700; {
+      dropdown.style.display = "none";
+      button.innerHTML = "menu";
+    }
+  })
+
+  //Get the button
+var mybutton = document.getElementById("myBtn");
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    mybutton.style.display = "block";
+  } else {
+    mybutton.style.display = "none";
+  }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}
+</script>
+</html>
