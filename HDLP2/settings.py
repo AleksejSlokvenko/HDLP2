@@ -25,7 +25,7 @@ SECRET_KEY = '6b5swq4cnh(n52gp1vttqbg-xo=6f1-s@+ms=i05z1(8af0lau'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['167.88.42.143', 'localhost', '127.0.0.1', '*', 'sdplatform.org']
 
 
 # Application definition
