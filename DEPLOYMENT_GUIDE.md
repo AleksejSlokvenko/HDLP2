@@ -274,26 +274,251 @@ sudo netstat -tlnp | grep :8080 # gunicorn
 
 Your Django application should now be accessible at:
 
-- `http://your-vps-ip` - Parents view (default)
-- `http://your-vps-ip/childs_view` - Child's view
-- `http://your-vps-ip/making_bed` - Making bed lesson
-- `http://your-vps-ip/making_friend` - Making friend lesson
-- `http://your-vps-ip/washing_hands` - Washing hands lesson
-- `http://your-vps-ip/fine_gross_motor_skills` - Motor skills lesson
+- `http://your-vps-ip` or `https://your-domain.com` - Parents view (default)
+- `http://your-vps-ip/childs_view` or `https://your-domain.com/childs_view` - Child's view
+- `http://your-vps-ip/making_bed` or `https://your-domain.com/making_bed` - Making bed lesson
+- `http://your-vps-ip/making_friend` or `https://your-domain.com/making_friend` - Making friend lesson
+- `http://your-vps-ip/washing_hands` or `https://your-domain.com/washing_hands` - Washing hands lesson
+- `http://your-vps-ip/fine_gross_motor_skills` or `https://your-domain.com/fine_gross_motor_skills` - Motor skills lesson
 
-## SSL Configuration (Optional)
+**With HTTPS enabled**: All HTTP requests will automatically redirect to HTTPS for security.
 
-To enable HTTPS with Let's Encrypt:
+## HTTPS/SSL Configuration
+
+### Method 1: Let's Encrypt (Recommended - Free SSL)
+
+#### Step 1: Install Certbot
 
 ```bash
-# Install certbot
+# Update package list
+sudo apt update
+
+# Install Certbot and nginx plugin
 sudo apt install certbot python3-certbot-nginx
 
-# Get SSL certificate
+# Verify installation
+certbot --version
+```
+
+#### Step 2: Obtain SSL Certificate
+
+```bash
+# Get SSL certificate for your domain
 sudo certbot --nginx -d your-domain.com -d www.your-domain.com
 
-# Auto-renewal will be set up automatically
+# Example for sdplatform.org:
+sudo certbot --nginx -d sdplatform.org -d www.sdplatform.org
 ```
+
+**Note**: If automatic installation fails, proceed with manual configuration below.
+
+#### Step 3: Manual nginx Configuration (if auto-install fails)
+
+Update `/etc/nginx/sites-available/hdlp2`:
+
+```nginx
+# Redirect HTTP to HTTPS
+server {
+    listen 80;
+    server_name your-domain.com www.your-domain.com;
+    return 301 https://$server_name$request_uri;
+}
+
+# HTTPS server
+server {
+    listen 443 ssl http2;
+    server_name your-domain.com www.your-domain.com;
+
+    # SSL configuration - using the Let's Encrypt certificate
+    ssl_certificate /etc/letsencrypt/live/your-domain.com/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/your-domain.com/privkey.pem;
+
+    # SSL security settings
+    ssl_protocols TLSv1.2 TLSv1.3;
+    ssl_ciphers ECDHE-RSA-AES256-GCM-SHA512:DHE-RSA-AES256-GCM-SHA512:ECDHE-RSA-AES256-GCM-SHA384;
+    ssl_prefer_server_ciphers off;
+    ssl_session_cache shared:SSL:10m;
+    ssl_session_timeout 10m;
+
+    # Security headers
+    add_header Strict-Transport-Security "max-age=31536000" always;
+    add_header X-Frame-Options DENY;
+    add_header X-Content-Type-Options nosniff;
+    add_header X-XSS-Protection "1; mode=block";
+
+    # Static files
+    location /static/ {
+        alias /var/www/hdlp2/static/;
+        expires 30d;
+        add_header Cache-Control "public";
+    }
+
+    # Favicon
+    location = /favicon.ico {
+        alias /var/www/hdlp2/static/img/favicon.ico;
+        access_log off;
+        log_not_found off;
+    }
+
+    # Main application
+    location / {
+        proxy_pass http://127.0.0.1:8080;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto https;
+        proxy_set_header X-Forwarded-Host $host;
+        proxy_redirect off;
+    }
+}
+```
+
+#### Step 4: Update Django Settings for HTTPS
+
+Add these settings to `HDLP2/settings.py`:
+
+```python
+# Update ALLOWED_HOSTS with your domain
+ALLOWED_HOSTS = ['your-domain.com', 'www.your-domain.com', 'your-vps-ip', 'localhost']
+
+# HTTPS settings
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SECURE_SSL_REDIRECT = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+SECURE_BROWSER_XSS_FILTER = True
+SECURE_CONTENT_TYPE_NOSNIFF = True
+
+# HSTS settings (HTTP Strict Transport Security)
+SECURE_HSTS_SECONDS = 31536000  # 1 year
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_PRELOAD = True
+```
+
+#### Step 5: Configure Firewall for HTTPS
+
+```bash
+# Allow HTTPS traffic
+sudo iptables -A INPUT -p tcp --dport 443 -j ACCEPT
+
+# Save iptables rules
+sudo iptables-save | sudo tee /etc/iptables/rules.v4
+```
+
+#### Step 6: Test and Restart Services
+
+```bash
+# Test nginx configuration
+sudo nginx -t
+
+# If test passes, restart services
+sudo systemctl restart nginx
+sudo systemctl restart hdlp2
+
+# Check service status
+sudo systemctl status nginx
+sudo systemctl status hdlp2
+```
+
+#### Step 7: Verify SSL Certificate
+
+```bash
+# Test HTTPS access
+curl -I https://your-domain.com
+
+# Test HTTP to HTTPS redirect
+curl -I http://your-domain.com
+
+# Check certificate details
+openssl s_client -connect your-domain.com:443 -servername your-domain.com
+
+# Test certificate renewal
+sudo certbot renew --dry-run
+
+# Check auto-renewal timer
+sudo systemctl status certbot.timer
+
+# List all certificates
+sudo certbot certificates
+```
+
+### Method 2: Self-Signed Certificate (Development Only)
+
+```bash
+# Create self-signed certificate (NOT for production)
+sudo mkdir -p /etc/ssl/private
+sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
+    -keyout /etc/ssl/private/hdlp2-selfsigned.key \
+    -out /etc/ssl/certs/hdlp2-selfsigned.crt
+
+# Update nginx to use self-signed certificate
+ssl_certificate /etc/ssl/certs/hdlp2-selfsigned.crt;
+ssl_certificate_key /etc/ssl/private/hdlp2-selfsigned.key;
+```
+
+### Certificate Management
+
+#### Auto-Renewal
+
+Let's Encrypt certificates expire every 90 days but auto-renewal is set up automatically:
+
+```bash
+# Check renewal timer status
+sudo systemctl status certbot.timer
+
+# Test renewal process
+sudo certbot renew --dry-run
+
+# Force renewal if needed (not recommended unless necessary)
+sudo certbot renew --force-renewal
+```
+
+#### Certificate Troubleshooting
+
+```bash
+# Check certificate expiration
+sudo certbot certificates
+
+# View certificate details
+openssl x509 -in /etc/letsencrypt/live/your-domain.com/cert.pem -text -noout
+
+# Check nginx SSL configuration
+sudo nginx -t
+
+# Check Let's Encrypt logs
+sudo tail -f /var/log/letsencrypt/letsencrypt.log
+
+# Manually install certificate if auto-install failed
+sudo certbot install --cert-name your-domain.com
+```
+
+### SSL Security Testing
+
+After setting up HTTPS, test your SSL configuration:
+
+1. **SSL Labs Test**: Visit https://www.ssllabs.com/ssltest/analyze.html?d=your-domain.com
+2. **Mozilla Observatory**: https://observatory.mozilla.org/
+3. **Security Headers**: https://securityheaders.com/
+
+### Common SSL Issues
+
+1. **Certificate not found**: Ensure certbot completed successfully
+
+   ```bash
+   sudo ls -la /etc/letsencrypt/live/your-domain.com/
+   ```
+
+2. **Mixed content warnings**: Ensure all resources use HTTPS in templates
+
+3. **Redirect loops**: Check `SECURE_SSL_REDIRECT` setting in Django
+
+4. **Domain validation failed**: Ensure domain DNS points to your server IP
+
+5. **Permission denied**: Check nginx can read certificate files
+   ```bash
+   sudo chmod 644 /etc/letsencrypt/live/your-domain.com/fullchain.pem
+   sudo chmod 600 /etc/letsencrypt/live/your-domain.com/privkey.pem
+   ```
 
 ## Troubleshooting
 

@@ -2,6 +2,12 @@
 
 A Django web application for helping children develop life skills through interactive lessons.
 
+## 🌐 Live Demo
+
+**Production Site**: https://sdplatform.org
+
+The application is deployed with SSL/TLS encryption and is accessible via HTTPS.
+
 ## Features
 
 - Parents view and child view interfaces
@@ -12,6 +18,7 @@ A Django web application for helping children develop life skills through intera
   - Fine and gross motor skills
 - Text-to-speech functionality with gTTS
 - Responsive design with custom CSS
+- **Secure HTTPS deployment** with Let's Encrypt SSL certificates
 
 ## Quick Start
 
@@ -28,6 +35,8 @@ A Django web application for helping children develop life skills through intera
 - `/washing_hands` - Washing hands lesson
 - `/fine_gross_motor_skills` - Motor skills lesson
 
+**Live Routes**: All routes are available at https://sdplatform.org with automatic HTTPS redirect.
+
 ## Deployment
 
 For detailed deployment instructions on Debian 13/Ubuntu servers, see:
@@ -39,8 +48,35 @@ The deployment guide includes:
 - Server setup and dependencies
 - Django configuration
 - Production deployment with nginx and gunicorn
-- SSL configuration
+- **SSL/HTTPS configuration with Let's Encrypt**
+- Certificate management and auto-renewal
+- Security headers and best practices
 - Troubleshooting tips
+
+## 🔒 HTTPS/SSL Setup
+
+The application supports secure HTTPS deployment using Let's Encrypt certificates:
+
+### Quick HTTPS Setup
+
+```bash
+# Install Certbot
+sudo apt install certbot python3-certbot-nginx
+
+# Get SSL certificate
+sudo certbot --nginx -d your-domain.com -d www.your-domain.com
+
+# Auto-renewal is configured automatically
+```
+
+### Security Features
+
+- **SSL/TLS encryption** with Let's Encrypt certificates
+- **HTTP to HTTPS redirect** for all traffic
+- **Security headers** (HSTS, XSS protection, etc.)
+- **Automatic certificate renewal** every 90 days
+
+For detailed HTTPS configuration, see the [HTTPS Configuration section](DEPLOYMENT_GUIDE.md#httpssl-configuration) in the deployment guide.
 
 ## Development
 
