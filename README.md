@@ -18,6 +18,8 @@ The application is deployed with SSL/TLS encryption and is accessible via HTTPS.
   - Fine and gross motor skills
 - Text-to-speech functionality with gTTS
 - Responsive design with custom CSS
+- **Intelligent HTTPS configuration** - automatically enables security settings in production
+- **Environment-based configuration** - supports development and production modes
 - **Secure HTTPS deployment** with Let's Encrypt SSL certificates
 
 ## Quick Start
@@ -97,8 +99,40 @@ pip install django gtts
 # Run migrations
 python manage.py migrate
 
-# Start development server
+# Start development server (HTTP-only for development)
 python manage.py runserver
+```
+
+### Development vs Production Configuration
+
+The application automatically handles HTTPS settings based on the `DEBUG` environment variable:
+
+- **Development (DEBUG=True)**: HTTPS settings are disabled, allowing HTTP-only development server
+- **Production (DEBUG=False)**: All HTTPS security settings are automatically enabled
+
+#### Development Commands
+
+```bash
+# Standard development (DEBUG=True, HTTP-only)
+python manage.py runserver
+
+# Force DEBUG mode with environment variable
+DJANGO_DEBUG=True python manage.py runserver
+
+# Test production settings locally (DEBUG=False, HTTPS enabled)
+DJANGO_DEBUG=False python manage.py runserver
+
+# Custom port
+python manage.py runserver 8080
+```
+
+#### Environment Variable Control
+
+The DEBUG setting can be controlled via the `DJANGO_DEBUG` environment variable:
+
+```bash
+export DJANGO_DEBUG=True   # Development mode
+export DJANGO_DEBUG=False  # Production mode
 ```
 
 ### Requirements
@@ -106,6 +140,40 @@ python manage.py runserver
 - Python 3.8+
 - Django 3.0+
 - gTTS (Google Text-to-Speech)
+
+### Configuration Overview
+
+The application uses intelligent configuration management:
+
+| Mode        | DEBUG   | HTTPS Settings | Use Case                           |
+| ----------- | ------- | -------------- | ---------------------------------- |
+| Development | `True`  | Disabled       | Local development with `runserver` |
+| Production  | `False` | Enabled        | Production deployment with SSL/TLS |
+
+### Troubleshooting
+
+#### Development Server HTTPS Errors
+
+If you see "You're accessing the development server over HTTPS, but it only supports HTTP":
+
+```bash
+# Ensure development mode
+DJANGO_DEBUG=True python manage.py runserver
+
+# Clear browser HSTS cache
+# Chrome: chrome://net-internals/#hsts
+# Firefox: about:preferences#privacy (Clear Data)
+```
+
+#### Verify Current Configuration
+
+```bash
+# Check current DEBUG setting
+python manage.py shell -c "from django.conf import settings; print('DEBUG:', settings.DEBUG)"
+
+# Check HTTPS settings status
+python manage.py shell -c "from django.conf import settings; print('SSL_REDIRECT:', getattr(settings, 'SECURE_SSL_REDIRECT', False))"
+```
 
 ## Contributing
 

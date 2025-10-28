@@ -80,10 +80,25 @@ Edit `HDLP2/settings.py`:
 
 ```python
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False  # Change to False for production
+# Support environment variable control
+DEBUG = os.getenv('DJANGO_DEBUG', 'False').lower() in ('true', '1', 'yes', 'on')
 
 # Add your server IP and domain
 ALLOWED_HOSTS = ['your-vps-ip', 'your-domain.com', 'localhost']
+
+# HTTPS settings - automatically enabled in production (when DEBUG=False)
+if not DEBUG:
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+    SECURE_SSL_REDIRECT = True
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+    SECURE_BROWSER_XSS_FILTER = True
+    SECURE_CONTENT_TYPE_NOSNIFF = True
+
+    # HSTS settings
+    SECURE_HSTS_SECONDS = 31536000
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+    SECURE_HSTS_PRELOAD = True
 
 # Static files configuration
 STATIC_URL = '/static/'
@@ -99,6 +114,8 @@ TIME_ZONE = 'America/New_York'  # or your preferred timezone
 ```
 
 Replace `your-vps-ip` and `your-domain.com` with actual values.
+
+**Note**: For production deployment, ensure `DJANGO_DEBUG` environment variable is not set or is set to `False`. The HTTPS security settings will be automatically activated.
 
 ### 7. Database Setup
 
@@ -375,25 +392,45 @@ server {
 
 #### Step 4: Update Django Settings for HTTPS
 
-Add these settings to `HDLP2/settings.py`:
+The Django settings are now automatically configured to enable HTTPS settings in production. The following settings are automatically applied when `DEBUG=False`:
 
 ```python
 # Update ALLOWED_HOSTS with your domain
 ALLOWED_HOSTS = ['your-domain.com', 'www.your-domain.com', 'your-vps-ip', 'localhost']
 
-# HTTPS settings
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-SECURE_SSL_REDIRECT = True
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
-SECURE_BROWSER_XSS_FILTER = True
-SECURE_CONTENT_TYPE_NOSNIFF = True
+# HTTPS settings - automatically enabled when DEBUG=False
+if not DEBUG:
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+    SECURE_SSL_REDIRECT = True
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+    SECURE_BROWSER_XSS_FILTER = True
+    SECURE_CONTENT_TYPE_NOSNIFF = True
 
-# HSTS settings (HTTP Strict Transport Security)
-SECURE_HSTS_SECONDS = 31536000  # 1 year
-SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-SECURE_HSTS_PRELOAD = True
+    # HSTS settings (HTTP Strict Transport Security)
+    SECURE_HSTS_SECONDS = 31536000  # 1 year
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+    SECURE_HSTS_PRELOAD = True
 ```
+
+**No manual configuration needed** - the HTTPS settings are automatically activated in production when `DEBUG=False`.
+
+#### Environment Variable Control
+
+You can control the DEBUG setting using environment variables:
+
+```bash
+# Production mode (default for deployment)
+export DJANGO_DEBUG=False
+
+# Development mode (for local testing)
+export DJANGO_DEBUG=True
+```
+
+To ensure production mode, either:
+
+1. Don't set the `DJANGO_DEBUG` environment variable (defaults to `False`)
+2. Or explicitly set: `export DJANGO_DEBUG=False`
 
 #### Step 5: Configure Firewall for HTTPS
 
@@ -515,10 +552,25 @@ After setting up HTTPS, test your SSL configuration:
 4. **Domain validation failed**: Ensure domain DNS points to your server IP
 
 5. **Permission denied**: Check nginx can read certificate files
+
    ```bash
    sudo chmod 644 /etc/letsencrypt/live/your-domain.com/fullchain.pem
    sudo chmod 600 /etc/letsencrypt/live/your-domain.com/privkey.pem
    ```
+
+6. **Development server HTTPS errors**: If you see "You're accessing the development server over HTTPS, but it only supports HTTP" errors:
+
+   ```bash
+   # Ensure DEBUG is True for development
+   export DJANGO_DEBUG=True
+   python manage.py runserver
+
+   # Clear browser cache and HSTS settings
+   # In Chrome: chrome://net-internals/#hsts (delete domain)
+   # Use incognito/private browsing to test
+   ```
+
+   This happens when browsers cache HSTS headers from production. The application now automatically disables HTTPS settings in development mode.
 
 ## Troubleshooting
 
@@ -562,8 +614,31 @@ sudo systemctl restart nginx
    - Restart: `sudo systemctl restart hdlp2`
 
 4. **Port already in use**: Kill existing processes
+
    - Check: `sudo netstat -tlnp | grep :8080`
    - Kill: `sudo kill -9 <PID>`
+
+5. **HTTPS settings not working**: Check DEBUG mode
+
+   ```bash
+   # For production (HTTPS settings enabled)
+   export DJANGO_DEBUG=False
+   sudo systemctl restart hdlp2
+
+   # For development (HTTPS settings disabled)
+   export DJANGO_DEBUG=True
+   python manage.py runserver
+   ```
+
+6. **Development server HTTPS errors**: Ensure development mode is active
+
+   ```bash
+   # Verify DEBUG mode
+   python manage.py shell -c "from django.conf import settings; print('DEBUG:', settings.DEBUG)"
+
+   # Force development mode
+   DJANGO_DEBUG=True python manage.py runserver
+   ```
 
 ### Update Application
 
