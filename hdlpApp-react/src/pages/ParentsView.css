@@ -3,6 +3,9 @@
   padding: 1.5rem 2rem;
   border-bottom: 2px solid rgba(102, 126, 234, 0.2);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  min-height: 80px;
+  height: auto;
+  overflow: visible;
 }
 
 #menu {
@@ -41,6 +44,7 @@
   transition: all 0.3s ease;
   background: rgba(255, 255, 255, 0.3);
   border: 1px solid transparent;
+  white-space: nowrap;
 }
 
 #menu > ul > li > a {
@@ -59,14 +63,34 @@
   box-shadow: 0 2px 6px rgba(102, 126, 234, 0.2);
 }
 
+/* Submenu container - absolutely positioned */
 #menu ul li ul {
-  padding-left: 1.2rem;
-  margin-top: 0.3rem;
+  position: absolute;
+  left: 0;
+  top: 100%;
+  min-width: 200px;
+  background: linear-gradient(135deg, #f3e5f5 0%, #fce4ec 100%);
+  border-radius: 8px;
+  padding: 0.5rem;
+  margin-top: 0.25rem;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+  border: 1px solid rgba(102, 126, 234, 0.2);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+
+#menu ul li:hover > ul {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
 }
 
 #menu ul li ul li {
-  display: none;
-  animation: slideIn 0.3s ease;
+  padding: 0.25rem 0;
+  position: relative;
 }
 
 @keyframes slideIn {
@@ -80,24 +104,14 @@
   }
 }
 
-#menu ul li:hover > ul > li {
-  display: block;
-}
-
+/* Nested submenu (level 3) */
 #menu ul li ul li ul {
-  display: none;
-}
-
-#menu ul li ul li:hover > ul {
-  display: block;
-}
-
-#menu ul li ul li ul li {
-  display: none;
-}
-
-#menu ul li ul li:hover > ul > li {
-  display: block;
+  position: absolute;
+  left: 100%;
+  top: 0;
+  margin-top: 0;
+  margin-left: 0.5rem;
+  min-width: 180px;
 }
 
 /* Nested level styling */
@@ -106,6 +120,8 @@
   color: #5e35b1;
   background: rgba(94, 53, 177, 0.08);
   border-color: rgba(94, 53, 177, 0.15);
+  display: block;
+  width: 100%;
 }
 
 #menu ul li ul li ul li a {
