@@ -1,17 +1,86 @@
+import { useState, useRef, useEffect } from 'react';
 import LessonLayout from './LessonLayout';
 
 function MakingBed() {
+  const audioRef = useRef(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  useEffect(() => {
+    // Load YouTube IFrame API
+    const tag = document.createElement('script');
+    tag.src = 'https://www.youtube.com/iframe_api';
+    const firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    window.onYouTubeIframeAPIReady = () => {
+      new window.YT.Player('player', {
+        height: '531',
+        width: '940',
+        videoId: 'uuZXbSSgbP0',
+        playerVars: {
+          autoplay: 1,
+          rel: 0,
+        },
+      });
+    };
+
+    return () => {
+      delete window.onYouTubeIframeAPIReady;
+    };
+  }, []);
+
+  const playAudio = () => {
+    if (audioRef.current) {
+      audioRef.current.play();
+      setIsPlaying(true);
+    }
+  };
+
+  const pauseAudio = () => {
+    if (audioRef.current) {
+      audioRef.current.pause();
+      setIsPlaying(false);
+    }
+  };
+
   return (
     <LessonLayout title="Making Bed">
-      <div id="player"></div>
-      {/* Video player can be added here */}
-      <div className="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-        <p className="lead">Watch this video and follow simple steps.</p>
-        <video width="75%" controls>
-          <source src="/video/Making_my_bed.mp4" type="video/mp4" />
-          Your browser does not support HTML5 video.
-        </video>
-      </div>
+      <section>
+        <h1>Making Bed</h1>
+        <div id="player"></div>
+      </section>
+
+      <section className="lesson-content">
+        <div className="audio-section">
+          <img src="/img/listen-1.jpg" width="10%" height="10%" alt="Listen" />
+          
+          <audio ref={audioRef} id="myAudio">
+            <source src="/sounds/making_a_bed.mp3" type="audio/mpeg" />
+            Your browser does not support the audio element.
+          </audio>
+          
+          <p>Click the buttons to play or pause the audio.</p>
+          
+          <button onClick={playAudio} type="button" className="audio-button">
+            Play Audio
+          </button>
+          <button onClick={pauseAudio} type="button" className="audio-button">
+            Pause Audio
+          </button>
+          
+          <div className="lesson-instructions">
+            <p>
+              <br />How to Make Your Bed.<br />
+              You've probably heard it from your mother a million times, but making your bed every morning is a must.<br />
+              It makes the entire bedroom look neater and more organized, and It may be hard to believe, but making your bed everyday will actually boost your happiness levels!<br />
+              First. Fix your Pillow. Make sure you give it a good shake!<br />
+              Second. Straighten a blanket. Take your time. One step at a time! Start from any corner and continue clockwise until you are done.<br />
+              Awesome job!<br />
+              Now let's get washed up!<br />
+            </p>
+          </div>
+        </div>
+      </section>
     </LessonLayout>
   );
 }
