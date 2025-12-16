@@ -1,6 +1,16 @@
 .menu-container {
-  background: #f4f4ff;
-  padding: 1rem 2rem;
+  background: linear-gradient(135deg, #e8eaf6 0%, #f3e5f5 100%);
+  padding: 1.5rem 2rem;
+  border-bottom: 2px solid rgba(102, 126, 234, 0.2);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+#menu {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: inline-block;
+  margin-right: 1.5rem;
+  vertical-align: top;
 }
 
 #menu ul {
@@ -8,29 +18,69 @@
   padding: 0;
   list-style: none;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  font-size: 12px;
+  font-size: 14px;
 }
 
 #menu ul li {
-  margin-left: 0.7em;
-  transition-duration: 1s;
+  margin-left: 0;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+#menu > ul > li {
+  padding: 0.5rem 0;
 }
 
 #menu ul li a {
-  color: #060808;
+  color: #4a148c;
   text-decoration: none;
+  font-weight: 600;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  display: inline-block;
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.3);
+  border: 1px solid transparent;
+}
+
+#menu > ul > li > a {
+  font-size: 15px;
+  font-weight: 700;
+  color: #667eea;
+  background: rgba(102, 126, 234, 0.1);
+  border: 1px solid rgba(102, 126, 234, 0.2);
 }
 
 #menu ul li a:hover {
-  text-decoration: underline;
-  opacity: 0.9;
+  background: rgba(102, 126, 234, 0.15);
+  transform: translateX(3px);
+  border-color: rgba(102, 126, 234, 0.3);
+  text-decoration: none;
+  box-shadow: 0 2px 6px rgba(102, 126, 234, 0.2);
+}
+
+#menu ul li ul {
+  padding-left: 1.2rem;
+  margin-top: 0.3rem;
 }
 
 #menu ul li ul li {
   display: none;
+  animation: slideIn 0.3s ease;
 }
 
-#menu ul li:hover ul li {
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+#menu ul li:hover > ul > li {
   display: block;
 }
 
@@ -40,6 +90,46 @@
 
 #menu ul li ul li:hover > ul {
   display: block;
+}
+
+#menu ul li ul li ul li {
+  display: none;
+}
+
+#menu ul li ul li:hover > ul > li {
+  display: block;
+}
+
+/* Nested level styling */
+#menu ul li ul li a {
+  font-size: 13px;
+  color: #5e35b1;
+  background: rgba(94, 53, 177, 0.08);
+  border-color: rgba(94, 53, 177, 0.15);
+}
+
+#menu ul li ul li ul li a {
+  font-size: 12px;
+  color: #7e57c2;
+  background: rgba(126, 87, 194, 0.06);
+  font-weight: 500;
+}
+
+/* Responsive design for menu container */
+@media (max-width: 768px) {
+  .menu-container {
+    padding: 1rem;
+  }
+
+  #menu {
+    display: block;
+    margin-right: 0;
+    margin-bottom: 1rem;
+  }
+
+  #menu ul {
+    font-size: 13px;
+  }
 }
 
 section {
