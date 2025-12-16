@@ -4,28 +4,55 @@ import LessonLayout from './LessonLayout';
 function MakingFriend() {
   const audioRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
+  const playerRef = useRef(null);
 
   useEffect(() => {
-    // Load YouTube IFrame API
-    const tag = document.createElement('script');
-    tag.src = 'https://www.youtube.com/iframe_api';
-    const firstScriptTag = document.getElementsByTagName('script')[0];
-    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+    const loadYouTubePlayer = () => {
+      // Check if API is already loaded
+      if (window.YT && window.YT.Player) {
+        // API is already loaded, create player directly
+        if (playerRef.current) {
+          playerRef.current.destroy();
+        }
+        playerRef.current = new window.YT.Player('player-making-friend', {
+          height: '531',
+          width: '940',
+          videoId: 'awvjBn8mE3A',
+          playerVars: {
+            autoplay: 1,
+            rel: 0,
+          },
+        });
+      } else {
+        // Load YouTube IFrame API
+        if (!document.querySelector('script[src="https://www.youtube.com/iframe_api"]')) {
+          const tag = document.createElement('script');
+          tag.src = 'https://www.youtube.com/iframe_api';
+          const firstScriptTag = document.getElementsByTagName('script')[0];
+          firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+        }
 
-    window.onYouTubeIframeAPIReady = () => {
-      new window.YT.Player('player', {
-        height: '531',
-        width: '940',
-        videoId: 'awvjBn8mE3A',
-        playerVars: {
-          autoplay: 1,
-          rel: 0,
-        },
-      });
+        window.onYouTubeIframeAPIReady = () => {
+          playerRef.current = new window.YT.Player('player-making-friend', {
+            height: '531',
+            width: '940',
+            videoId: 'awvjBn8mE3A',
+            playerVars: {
+              autoplay: 1,
+              rel: 0,
+            },
+          });
+        };
+      }
     };
 
+    loadYouTubePlayer();
+
     return () => {
-      delete window.onYouTubeIframeAPIReady;
+      // Cleanup player on unmount
+      if (playerRef.current && playerRef.current.destroy) {
+        playerRef.current.destroy();
+      }
     };
   }, []);
 
@@ -47,7 +74,7 @@ function MakingFriend() {
     <LessonLayout title="Making a Friend">
       <section>
         <h1>Making a Friend</h1>
-        <div id="player"></div>
+        <div id="player-making-friend"></div>
       </section>
 
       <section className="lesson-content">
