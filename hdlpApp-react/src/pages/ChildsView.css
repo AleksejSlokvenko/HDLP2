@@ -162,24 +162,28 @@
   }
 
   #menu {
-    display: inline-block;
+    display: block;
     margin-right: 0;
     margin-bottom: 0;
-    white-space: nowrap;
+    width: 100%;
+    max-width: none;
   }
 
   /* Top-level menu items horizontal layout */
   #menu > ul {
-    display: flex;
+    display: inline-flex; /* Use inline-flex to allow horizontal scrolling */
     flex-direction: row;
     flex-wrap: nowrap;
     gap: 0.5rem;
     font-size: 13px;
+    margin: 0;
+    padding: 0;
   }
 
   #menu > ul > li {
     flex-shrink: 0;
     padding: 0;
+    display: inline-block; /* Ensure items stay inline */
   }
 
   #menu > ul > li > a {
