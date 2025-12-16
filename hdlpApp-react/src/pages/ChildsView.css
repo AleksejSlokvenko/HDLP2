@@ -131,19 +131,109 @@
   font-weight: 500;
 }
 
-/* Responsive design for menu container */
-@media (max-width: 768px) {
+/* Responsive design for menu container - Horizontal Scrollable Menu */
+@media (max-width: 770px) {
   .menu-container {
     padding: 1rem;
+    overflow-x: auto;
+    overflow-y: visible;
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+    scrollbar-width: thin; /* Firefox */
+    scrollbar-color: rgba(102, 126, 234, 0.3) transparent; /* Firefox */
+  }
+
+  /* Webkit scrollbar styling */
+  .menu-container::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  .menu-container::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 3px;
+  }
+
+  .menu-container::-webkit-scrollbar-thumb {
+    background: rgba(102, 126, 234, 0.3);
+    border-radius: 3px;
+  }
+
+  .menu-container::-webkit-scrollbar-thumb:hover {
+    background: rgba(102, 126, 234, 0.5);
   }
 
   #menu {
-    display: block;
+    display: inline-block;
     margin-right: 0;
-    margin-bottom: 1rem;
+    margin-bottom: 0;
+    white-space: nowrap;
   }
 
-  #menu ul {
+  /* Top-level menu items horizontal layout */
+  #menu > ul {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 0.5rem;
+    font-size: 13px;
+  }
+
+  #menu > ul > li {
+    flex-shrink: 0;
+    padding: 0;
+  }
+
+  #menu > ul > li > a {
+    padding: 0.6rem 1rem;
+    font-size: 14px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+
+  /* Submenus appear below parent on mobile */
+  #menu ul li ul {
+    position: fixed;
+    left: 1rem;
+    right: 1rem;
+    top: auto;
+    min-width: auto;
+    width: auto;
+    max-width: calc(100vw - 2rem);
+    margin-top: 0.5rem;
+  }
+
+  /* Nested submenus also appear below */
+  #menu ul li ul li ul {
+    position: relative;
+    left: 0;
+    top: auto;
+    margin-left: 1rem;
+    margin-top: 0.25rem;
+    width: auto;
+  }
+
+  #menu ul li ul li a {
+    font-size: 12px;
+    padding: 0.5rem 0.8rem;
+  }
+
+  #menu ul li ul li ul li a {
+    font-size: 11px;
+    padding: 0.4rem 0.8rem;
+  }
+}
+
+/* Extra responsive adjustments for very small screens */
+@media (max-width: 480px) {
+  .menu-container {
+    padding: 0.75rem 0.5rem;
+  }
+
+  #menu > ul {
+    gap: 0.4rem;
+  }
+
+  #menu > ul > li > a {
+    padding: 0.5rem 0.8rem;
     font-size: 13px;
   }
 }
