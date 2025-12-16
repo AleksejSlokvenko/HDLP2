@@ -1,0 +1,54 @@
+.menu-container {
+  background: #f4f4ff;
+  padding: 1rem 2rem;
+}
+
+#menu ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 12px;
+}
+
+#menu ul li {
+  margin-left: 0.7em;
+  transition-duration: 1s;
+}
+
+#menu ul li a {
+  color: #060808;
+  text-decoration: none;
+}
+
+#menu ul li a:hover {
+  text-decoration: underline;
+  opacity: 0.9;
+}
+
+#menu ul li ul li {
+  display: none;
+}
+
+#menu ul li:hover ul li {
+  display: block;
+}
+
+#menu ul li ul li ul {
+  display: none;
+}
+
+#menu ul li ul li:hover > ul {
+  display: block;
+}
+
+section {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+section h1 {
+  color: #333;
+  margin-bottom: 1.5rem;
+}
