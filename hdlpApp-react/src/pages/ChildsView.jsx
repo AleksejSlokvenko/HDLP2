@@ -1,5 +1,6 @@
 import Layout from '../components/Layout/Layout';
 import LessonCard from '../components/Cards/LessonCard';
+import MenuContainer from '../components/Menu/MenuContainer';
 import './ChildsView.css';
 
 function ChildsView() {
@@ -33,143 +34,147 @@ function ChildsView() {
     { image: '/img/jetskiAddition.jpg', title: 'JetSki Addition', likes: 310, link: 'https://www.arcademics.com/games/jet-ski', isExternal: true },
   ];
 
+  const menuItems = [
+    {
+      label: 'Self Care',
+      link: '#SelfCare',
+      submenu: [
+        {
+          label: 'Personal Hygiene',
+          submenu: [
+            { label: 'Washing Face' },
+            { label: 'Washing Hands', link: '/washing_hands' },
+            { label: 'Washing Feet' },
+            { label: 'Cutting Nails' },
+            { label: 'Brushing Hair' },
+            { label: 'Brushing Teeth' }
+          ]
+        },
+        { label: 'Healthy Diet' },
+        { label: 'Healthy Habits' }
+      ]
+    },
+    {
+      label: 'Environmental Care',
+      link: '#EnvironmentalCare',
+      submenu: [
+        {
+          label: 'Home Care',
+          submenu: [
+            {
+              label: 'Bedroom',
+              submenu: [
+                { label: 'Making Bed', link: '/making_bed' },
+                { label: 'Changing Bedding' },
+                { label: 'Organizing Clothes' },
+                { label: 'Organizing Toys' }
+              ]
+            },
+            {
+              label: 'Kitchen',
+              submenu: [
+                { label: 'Washing Dishes' },
+                { label: 'Sweeping Floor' },
+                { label: 'Washing Floor' },
+                { label: 'Cleaning Table' }
+              ]
+            }
+          ]
+        },
+        { label: 'Helping Others' },
+        { label: 'Garden Care' },
+        { label: 'Animal Care' }
+      ]
+    },
+    {
+      label: 'Physical Development',
+      link: '#PhysicalDevelopment',
+      submenu: [
+        {
+          label: 'Motor Skills',
+          submenu: [
+            {
+              label: 'Fine motor skills',
+              submenu: [
+                { label: 'Exercise 1', link: '/fine_gross_motor_skills' },
+                { label: 'Exercise 2' },
+                { label: 'Exercise 3' }
+              ]
+            },
+            {
+              label: 'Gross Motor Skills',
+              submenu: [
+                { label: 'Exercise 1' },
+                { label: 'Exercise 2' },
+                { label: 'Exercise 3' }
+              ]
+            }
+          ]
+        },
+        { label: 'Brain&Brain Coordination' }
+      ]
+    },
+    {
+      label: 'Personality Development',
+      link: '#PersonalityDevelopment',
+      submenu: [
+        {
+          label: 'Communication',
+          submenu: [
+            {
+              label: 'Interacting with Child',
+              submenu: [
+                { label: 'Making Friend', link: '/making_friend' },
+                { label: 'Asking for Help' },
+                { label: 'Apologising' }
+              ]
+            },
+            {
+              label: 'Interacting with Adults',
+              submenu: [
+                { label: 'Seeking Attention' },
+                { label: 'Asking for Help' },
+                { label: 'Asking for Permission' }
+              ]
+            }
+          ]
+        },
+        { label: 'Self-Analysis' },
+        { label: 'Self-Development' }
+      ]
+    },
+    {
+      label: 'Intellectual Development',
+      link: '#IntellectualDevelopment',
+      submenu: [
+        {
+          label: 'Math',
+          submenu: [
+            {
+              label: 'Addition',
+              submenu: [
+                { 
+                  label: 'JetSki Addition', 
+                  link: 'https://www.arcademics.com/games/jet-ski',
+                  isExternal: true
+                }
+              ]
+            },
+            { label: 'Subtractions' },
+            { label: 'Division' },
+            { label: 'Multiplication' },
+            { label: 'Fractions' }
+          ]
+        },
+        { label: 'Reading' },
+        { label: 'Science' }
+      ]
+    }
+  ];
+
   return (
     <Layout userType="Child">
-      <div className="menu-container">
-        <main id="menu">
-          <ul>
-            <li><a href="#SelfCare">Self Care</a>
-              <ul>
-                <li><a href="#">Personal Hygiene</a>
-                  <ul>
-                    <li><a href="#">Washing Face</a></li>
-                    <li><a href="/washing_hands">Washing Hands</a></li>
-                    <li><a href="#">Washing Feet</a></li>
-                    <li><a href="#">Cutting Nails</a></li>
-                    <li><a href="#">Brushing Hair</a></li>
-                    <li><a href="#">Brushing Teeth</a></li>
-                  </ul>
-                </li>
-                <li><a href="#">Healthy Diet</a></li>
-                <li><a href="#">Healthy Habits</a></li>
-              </ul>
-            </li>
-          </ul>
-        </main>
-
-        <main id="menu">
-          <ul>
-            <li><a href="#EnvironmentalCare">Environmental Care</a>
-              <ul>
-                <li><a href="#">Home Care</a>
-                  <ul>
-                    <li><a href="#">Bedroom</a>
-                      <ul>
-                        <li><a href="/making_bed">Making Bed</a></li>
-                        <li><a href="#">Changing Bedding</a></li>
-                        <li><a href="#">Organizing Clothes</a></li>
-                        <li><a href="#">Organizing Toys</a></li>
-                      </ul>
-                    </li>
-                    <li><a href="#">Kitchen</a>
-                      <ul>
-                        <li><a href="#">Washing Dishes</a></li>
-                        <li><a href="#">Sweeping Floor</a></li>
-                        <li><a href="#">Washing Floor</a></li>
-                        <li><a href="#">Cleaning Table</a></li>
-                      </ul>
-                    </li>
-                  </ul>
-                </li>
-                <li><a href="#">Helping Others</a></li>
-                <li><a href="#">Garden Care</a></li>
-                <li><a href="#">Animal Care</a></li>
-              </ul>
-            </li>
-          </ul>
-        </main>
-
-        <main id="menu">
-          <ul>
-            <li><a href="#PhysicalDevelopment">Physical Development</a>
-              <ul>
-                <li><a href="#">Motor Skills</a>
-                  <ul>
-                    <li><a href="#">Fine motor skills</a>
-                      <ul>
-                        <li><a href="/fine_gross_motor_skills">Exercise 1</a></li>
-                        <li><a href="#">Exercise 2</a></li>
-                        <li><a href="#">Exercise 3</a></li>
-                      </ul>
-                    </li>
-                    <li><a href="#">Gross Motor Skills</a>
-                      <ul>
-                        <li><a href="#">Exercise 1</a></li>
-                        <li><a href="#">Exercise 2</a></li>
-                        <li><a href="#">Exercise 3</a></li>
-                      </ul>
-                    </li>
-                  </ul>
-                </li>
-                <li><a href="#">Brain&amp;Brain Coordination</a></li>
-              </ul>
-            </li>
-          </ul>
-        </main>
-
-        <main id="menu">
-          <ul>
-            <li><a href="#PersonalityDevelopment">Personality Development</a>
-              <ul>
-                <li><a href="#">Communication</a>
-                  <ul>
-                    <li><a href="#">Interacting with Child</a>
-                      <ul>
-                        <li><a href="/making_friend">Making Friend</a></li>
-                        <li><a href="#">Asking for Help</a></li>
-                        <li><a href="#">Apologising</a></li>
-                      </ul>
-                    </li>
-                    <li><a href="#">Interacting with Adults</a>
-                      <ul>
-                        <li><a href="#">Seeking Attention</a></li>
-                        <li><a href="#">Asking for Help</a></li>
-                        <li><a href="#">Asking for Permission</a></li>
-                      </ul>
-                    </li>
-                  </ul>
-                </li>
-                <li><a href="#">Self-Analysis</a></li>
-                <li><a href="#">Self-Development</a></li>
-              </ul>
-            </li>
-          </ul>
-        </main>
-
-        <main id="menu">
-          <ul>
-            <li><a href="#IntellectualDevelopment">Intellectual Development</a>
-              <ul>
-                <li><a href="#">Math</a>
-                  <ul>
-                    <li><a href="#">Addition</a>
-                      <ul>
-                        <li><a href="https://www.arcademics.com/games/jet-ski" target="_blank" rel="noopener noreferrer">JetSki Addition</a></li>
-                      </ul>
-                    </li>
-                    <li><a href="#">Subtractions</a></li>
-                    <li><a href="#">Division</a></li>
-                    <li><a href="#">Multiplication</a></li>
-                    <li><a href="#">Fractions</a></li>
-                  </ul>
-                </li>
-                <li><a href="#">Reading</a></li>
-                <li><a href="#">Science</a></li>
-              </ul>
-            </li>
-          </ul>
-        </main>
-      </div>
+      <MenuContainer menuItems={menuItems} />
 
       <section id="SelfCare">
         <h1>Self Care</h1>

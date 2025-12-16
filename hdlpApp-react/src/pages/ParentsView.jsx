@@ -1,5 +1,6 @@
 import Layout from '../components/Layout/Layout';
 import LessonCard from '../components/Cards/LessonCard';
+import MenuContainer from '../components/Menu/MenuContainer';
 import './ParentsView.css';
 
 function ParentsView() {
@@ -17,62 +18,44 @@ function ParentsView() {
     { image: '/img/newboarn_bathing.jpg', title: 'Bathing', likes: 2512, link: './' },
   ];
 
+  const menuItems = [
+    {
+      label: 'Planning Baby',
+      submenu: [
+        {
+          label: 'Getting ready',
+          submenu: [
+            { label: 'Safe House' },
+            { label: 'Expenses' }
+          ]
+        },
+        { label: 'Healthy Diet' },
+        { label: 'Healthy Habits' }
+      ]
+    },
+    {
+      label: 'Newborn Baby',
+      submenu: [
+        { label: 'Feeding' },
+        { label: 'Stretching' },
+        {
+          label: 'Communication',
+          submenu: [
+            { label: "Child's Language" },
+            { label: 'Sign Language' }
+          ]
+        },
+        { label: 'Bathing' }
+      ]
+    },
+    { label: 'Walking Baby' },
+    { label: 'Talking Child' },
+    { label: 'Reading Child' }
+  ];
+
   return (
     <Layout userType="Parent">
-      <div className="menu-container">
-        <main id="menu">
-          <ul>
-            <li><a href="#">Planning Baby</a>
-              <ul>
-                <li><a href="#">Getting ready</a>
-                  <ul>
-                    <li><a href="#">Safe House</a></li>
-                    <li><a href="#">Expenses</a></li>
-                  </ul>
-                </li>
-                <li><a href="#">Healthy Diet</a></li>
-                <li><a href="#">Healthy Habits</a></li>
-              </ul>
-            </li>
-          </ul>
-        </main>
-
-        <main id="menu">
-          <ul>
-            <li><a href="#">Newborn Baby</a>
-              <ul>
-                <li><a href="#">Feeding</a></li>
-                <li><a href="#">Stretching</a></li>
-                <li><a href="#">Communication</a>
-                  <ul>
-                    <li><a href="#">Child's Language</a></li>
-                    <li><a href="#">Sign Language</a></li>
-                  </ul>
-                </li>
-                <li><a href="#">Bathing</a></li>
-              </ul>
-            </li>
-          </ul>
-        </main>
-
-        <main id="menu">
-          <ul>
-            <li><a href="#">Walking Baby</a></li>
-          </ul>
-        </main>
-
-        <main id="menu">
-          <ul>
-            <li><a href="#">Talking Child</a></li>
-          </ul>
-        </main>
-
-        <main id="menu">
-          <ul>
-            <li><a href="#">Reading Child</a></li>
-          </ul>
-        </main>
-      </div>
+      <MenuContainer menuItems={menuItems} />
 
       <section>
         <h1>Planning Baby</h1>

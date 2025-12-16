@@ -1,78 +1,63 @@
 import Layout from '../../components/Layout/Layout';
+import MenuContainer from '../../components/Menu/MenuContainer';
 import './LessonLayout.css';
 
 function LessonLayout({ children, title }) {
+  const menuItems = [
+    {
+      label: 'Self Care',
+      submenu: [
+        {
+          label: 'Personal Hygiene',
+          submenu: [
+            { label: 'Washing Face' },
+            { label: 'Washing Hands' },
+            { label: 'Washing Feet' },
+            { label: 'Cutting Nails' },
+            { label: 'Brushing Hair' },
+            { label: 'Brushing Teeth' }
+          ]
+        },
+        { label: 'Healthy Diet' },
+        { label: 'Healthy Habits' }
+      ]
+    },
+    {
+      label: 'Environmental Care',
+      submenu: [
+        { label: 'Helping Others' },
+        { label: 'Garden Care' },
+        { label: 'Animal Care' }
+      ]
+    },
+    {
+      label: 'Physical Development',
+      submenu: [
+        { label: 'Motor Skills' },
+        { label: 'Brain&Brain Coordination' }
+      ]
+    },
+    {
+      label: 'Personality Development',
+      submenu: [
+        { label: 'Communication' },
+        { label: 'Self-Analysis' },
+        { label: 'Self-Development' }
+      ]
+    },
+    {
+      label: 'Intellectual Development',
+      submenu: [
+        { label: 'Math' },
+        { label: 'Reading' },
+        { label: 'Science' }
+      ]
+    }
+  ];
+
   return (
     <Layout userType="Child">
-      <div className="menu-container">
-        <main id="menu">
-          <ul>
-            <li><a href="#">Self Care</a>
-              <ul>
-                <li><a href="#">Personal Hygiene</a>
-                  <ul>
-                    <li><a href="#">Washing Face</a></li>
-                    <li><a href="#">Washing Hands</a></li>
-                    <li><a href="#">Washing Feet</a></li>
-                    <li><a href="#">Cutting Nails</a></li>
-                    <li><a href="#">Brushing Hair</a></li>
-                    <li><a href="#">Brushing Teeth</a></li>
-                  </ul>
-                </li>
-                <li><a href="#">Healthy Diet</a></li>
-                <li><a href="#">Healthy Habits</a></li>
-              </ul>
-            </li>
-          </ul>
-        </main>
-
-        <main id="menu">
-          <ul>
-            <li><a href="#">Environmental Care</a>
-              <ul>
-                <li><a href="#">Helping Others</a></li>
-                <li><a href="#">Garden Care</a></li>
-                <li><a href="#">Animal Care</a></li>
-              </ul>
-            </li>
-          </ul>
-        </main>
-
-        <main id="menu">
-          <ul>
-            <li><a href="#">Physical Development</a>
-              <ul>
-                <li><a href="#">Motor Skills</a></li>
-                <li><a href="#">Brain&amp;Brain Coordination</a></li>
-              </ul>
-            </li>
-          </ul>
-        </main>
-
-        <main id="menu">
-          <ul>
-            <li><a href="#">Personality Development</a>
-              <ul>
-                <li><a href="#">Communication</a></li>
-                <li><a href="#">Self-Analysis</a></li>
-                <li><a href="#">Self-Development</a></li>
-              </ul>
-            </li>
-          </ul>
-        </main>
-
-        <main id="menu">
-          <ul>
-            <li><a href="#">Intellectual Development</a>
-              <ul>
-                <li><a href="#">Math</a></li>
-                <li><a href="#">Reading</a></li>
-                <li><a href="#">Science</a></li>
-              </ul>
-            </li>
-          </ul>
-        </main>
-      </div>
+      <MenuContainer menuItems={menuItems} />
 
       <section>
         <h1>{title}</h1>
