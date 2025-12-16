@@ -15,15 +15,16 @@ function Navbar({ userType = 'Parent' }) {
   return (
     <nav role="navigation">
       <div className="content">
-        <div>
+        <div className="nav-brand">
+          <i className="material-icons brand-icon">school</i>
           <h2>Welcome <span className="welcome">{userType === 'Parent' ? 'Parent!' : 'Mr.Sunshine!'}</span></h2>
         </div>
         
         <div className="links">
-          <Link to={linkTo}>{linkText}</Link>
-          <a href="">Language</a>
-          <a href="">Settings</a>
-          <a href="">Log Out</a>
+          <Link to={linkTo} className="nav-link">{linkText}</Link>
+          <a href="#" className="nav-link" onClick={(e) => e.preventDefault()}>Language</a>
+          <a href="#" className="nav-link" onClick={(e) => e.preventDefault()}>Settings</a>
+          <a href="#" className="nav-link logout" onClick={(e) => e.preventDefault()}>Log Out</a>
         </div>
         <i className="material-icons menu" onClick={toggleMenu}>
           {isMenuOpen ? 'close' : 'menu'}
@@ -31,10 +32,10 @@ function Navbar({ userType = 'Parent' }) {
       </div>
 
       <div className={`dropdown ${isMenuOpen ? 'open' : ''}`}>
-        <Link to={linkTo}>{linkText}</Link>
-        <a href="">Language</a>
-        <a href="">Settings</a>
-        <a href="">Log Out</a>
+        <Link to={linkTo} className="dropdown-link" onClick={toggleMenu}>{linkText}</Link>
+        <a href="#" className="dropdown-link" onClick={(e) => { e.preventDefault(); toggleMenu(); }}>Language</a>
+        <a href="#" className="dropdown-link" onClick={(e) => { e.preventDefault(); toggleMenu(); }}>Settings</a>
+        <a href="#" className="dropdown-link" onClick={(e) => { e.preventDefault(); toggleMenu(); }}>Log Out</a>
       </div>
     </nav>
   );
