@@ -1,0 +1,15 @@
+/* Page-specific styles */
+section {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+section h1, section h2 {
+  color: #333;
+  margin-bottom: 1.5rem;
+}
+
+.section2 {
+  background-color: #f9f9f9;
+}

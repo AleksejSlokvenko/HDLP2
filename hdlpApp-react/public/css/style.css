@@ -1,0 +1,389 @@
+body {
+  margin: 0;
+  padding: 0;
+
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  /* text-align: center; */
+}
+
+.menu-line-item {
+  background: #f4f4ff;
+}
+.menu-line-item ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  /* font: bolder; */
+  font-size: 12px;
+}
+.menu-line-item ul li {
+  margin-left: 0.7em;
+  /* display: inline-table; */
+  transition-duration: 1s;
+}
+.menu-line-item ul li a {
+  color: #060808;
+  text-decoration: none;
+  /* display: block; */
+}
+.menu-line-item ul li a:hover {
+  text-decoration: underline;
+  /* background-color: rgba(255, 255, 255, 0.767); */
+  opacity: 0.9;
+}
+.menu-line-item ul li ul li {
+  display: none;
+}
+.menu-line-item ul li:hover ul li {
+  display: block;
+}
+.menu-line-item ul li ul li ul {
+  display: none;
+}
+.menu-line-item ul li ul li:hover > ul {
+  display: block;
+}
+/* .menu-line-item ul li ul li ul li ul{
+    display: none;
+}  */
+/* ul li ul li ul li:hover > ul{
+    display: block;
+} */
+#content {
+  max-width: 980px;
+  margin: 0 auto;
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: repeat(5, 1fr);
+  /* grid-template-columns: 100%; for single item pes row */
+  /* grid-auto-rows: minmax(100px, auto); */
+  /* grid-template-rows: repeat(auto, 5); for single items per 5 rows with auto high  */
+  grid-template-areas: 
+    /* "header header header header" */
+    "nav nav nav nav nav"
+    "main main main main main"
+    "section section section section section"
+    "section2 section2 section2 section2 section2"
+    "section3 section3 section3 section3 section3"
+    "section4 section4 section4 section4 section4"
+    "section5 section5 section5 section5 section5"
+    "footer1 footer1 footer1 footer1 footer1"
+    "footer footer footer footer footer";
+}
+
+@media only screen and (max-width: 768px) {
+  #content nav .content .menu {
+    display: initial;
+    text-align: end;
+  }
+  #content nav .content .links {
+    display: none;
+  }
+  #content {
+    max-width: 980px;
+    margin: 0 auto;
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: minmax(50px, auto);
+    grid-template-areas: 
+        /* "header header header header" */
+      "nav nav nav nav nav"
+      "main main main main main"
+      "section section section section section"
+      "section2 section2 section2 section2 section2"
+      "section3 section3 section3 section3 section3"
+      "section4 section4 section4 section4 section4"
+      "section5 section5 section5 section5 section5"
+      "footer1 footer1 footer1 footer1 footer1"
+      "footer footer footer footer footer";
+  }
+}
+
+#content > * {
+  padding: 20px;
+  border-radius: 0.1em;
+}
+
+/* header{
+    grid-area: header;
+} */
+
+main {
+  grid-area: main main main main main;
+}
+
+/* aside{
+    grid-area: aside;
+} */
+
+section {
+  grid-area: section;
+  background: #f4f4ff;
+}
+
+section2 {
+  grid-area: section2;
+  background: #f4f4ff;
+}
+
+section3 {
+  grid-area: section3;
+  background: #f4f4ff;
+}
+
+section4 {
+  grid-area: section4;
+  background: #f4f4ff;
+}
+section5 {
+  grid-area: section5;
+  background: #f4f4ff;
+}
+
+nav {
+  grid-area: nav;
+  display: grid;
+
+  grid-template-rows: minmax(min-content, 100px), min-content;
+}
+nav a {
+  text-decoration: none;
+  color: #7702fc;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+nav .welcome {
+  color: rgb(170, 161, 248);
+}
+h1 {
+  color: #557e75;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  /* text-align: center; */
+  margin: 0;
+}
+h2 {
+  color: #557e75;
+  margin: 0em;
+}
+
+nav .content {
+  display: grid;
+  /* place-items: center; */
+  grid-auto-flow: column;
+  align-content: space-evenly;
+}
+nav .content .menu {
+  display: none;
+}
+
+nav .content .menu:hover {
+  filter: opacity(50%);
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+}
+nav .content .links {
+  display: grid;
+  place-items: center;
+  grid-gap: 15px;
+  grid-auto-flow: column;
+  /*     
+    grid-auto-columns: minmax(min-content, 100px); */
+}
+nav .content .links a:hover {
+  text-decoration: underline;
+}
+nav .dropdown {
+  display: none;
+  text-align: center;
+  background-color: #f4f4ff;
+}
+nav .dropdown a:hover {
+  display: grid;
+  background-color: rgb(253, 253, 253);
+  text-decoration: underline;
+  /* background-color: floralwhite; */
+}
+nav .dropdown a {
+  color: #7702fc;
+  display: grid;
+  padding: 10px;
+}
+
+.cards {
+  margin: 0 auto;
+  max-width: 960px;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  grid-auto-rows: auto;
+  gap: 20px;
+  font-family: sans-serif;
+  padding-top: 20px;
+}
+
+.cards * {
+  box-sizing: border-box;
+  /* border-radius: 0.1em; */
+}
+
+/* @keyframes bounce {
+from,
+20%,
+53%,
+80%,
+to {
+    -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+}
+
+40%,
+43% {
+    -webkit-animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    -webkit-transform: translate3d(0, -30px, 0);
+    transform: translate3d(0, -30px, 0);
+}
+
+70% {
+    -webkit-animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    -webkit-transform: translate3d(0, -15px, 0);
+    transform: translate3d(0, -15px, 0);
+}
+
+90% {
+    -webkit-transform: translate3d(0, -4px, 0);
+    transform: translate3d(0, -4px, 0);
+}
+}
+
+.bounce {
+-webkit-animation-name: bounce;
+animation-name: bounce;
+-webkit-transform-origin: center bottom;
+transform-origin: center bottom;
+} */
+
+.card__image {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  display: block;
+  /* border-top: 2px solid #333333;
+    border-right: 2px solid #333333;
+    border-left: 2px solid #333333; */
+}
+
+.card__content {
+  line-height: 1.5;
+  font-size: 0.9em;
+  padding: 10px;
+  background: #fafafa;
+  /* border-right: 2px solid #333333;
+    border-left: 2px solid #333333; */
+}
+
+.card__content > p:first-of-type {
+  margin-top: 0;
+}
+
+.card__content > p:last-of-type {
+  margin-bottom: 0;
+}
+
+.card__info {
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #7c7c7c;
+  background: #cbe8fa;
+  font-size: 0.8em;
+  /* border-bottom: 2px solid #333333;
+    border-right: 2px solid #333333;
+    border-left: 2px solid #333333; */
+}
+
+.card__info i {
+  font-size: 0.9em;
+  margin-right: 8px;
+}
+
+.card__link {
+  color: #64968c;
+  text-decoration: none;
+}
+
+.card__link:hover {
+  text-decoration: underline;
+}
+
+footer1 {
+  grid-area: footer1;
+}
+
+footer {
+  grid-area: footer;
+}
+
+.footer_content {
+  background: #f4f4ff;
+}
+.footer_links {
+  display: grid;
+  grid-auto-flow: column;
+}
+.footer_links h5 {
+  color: #557e75;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  margin-bottom: 0rem;
+  margin-left: 2.4rem;
+}
+.footer_links ul {
+  list-style: none;
+}
+.footer_links a {
+  color: #7702fc;
+  margin: 0;
+  text-decoration: none;
+}
+.footer_links a:hover {
+  color: #7801ff;
+  text-align: left;
+  margin: 0;
+  text-decoration: underline;
+}
+
+#myBtn {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  z-index: 99;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  background-color: #f4f4ff;
+  color: #7702fc;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 4px;
+}
+
+#myBtn:hover {
+  background-color: rgb(211, 196, 253);
+}
+
+#player {
+  padding-top: 20px;
+  border: none;
+}
