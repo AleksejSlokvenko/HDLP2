@@ -1,6 +1,7 @@
 import Layout from '../components/Layout/Layout';
 import LessonCard from '../components/Cards/LessonCard';
 import MenuContainer from '../components/Menu/MenuContainer';
+import { MenuItems } from '../utils/constants';
 import './ParentsView.css';
 
 function ParentsView() {
@@ -18,44 +19,9 @@ function ParentsView() {
     { image: '/img/newboarn_bathing.jpg', title: 'Bathing', likes: 2512, link: './' },
   ];
 
-  const menuItems = [
-    {
-      label: 'Planning Baby',
-      submenu: [
-        {
-          label: 'Getting ready',
-          submenu: [
-            { label: 'Safe House' },
-            { label: 'Expenses' }
-          ]
-        },
-        { label: 'Healthy Diet' },
-        { label: 'Healthy Habits' }
-      ]
-    },
-    {
-      label: 'Newborn Baby',
-      submenu: [
-        { label: 'Feeding' },
-        { label: 'Stretching' },
-        {
-          label: 'Communication',
-          submenu: [
-            { label: "Child's Language" },
-            { label: 'Sign Language' }
-          ]
-        },
-        { label: 'Bathing' }
-      ]
-    },
-    { label: 'Walking Baby' },
-    { label: 'Talking Child' },
-    { label: 'Reading Child' }
-  ];
-
   return (
     <Layout userType="Parent">
-      <MenuContainer menuItems={menuItems} />
+      <MenuContainer menuItems={MenuItems.PARENTS_VIEW} />
 
       <section>
         <h1>Planning Baby</h1>
